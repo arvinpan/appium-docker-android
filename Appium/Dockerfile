@@ -14,6 +14,8 @@ WORKDIR /root
 #------------------
 # openjdk-8-jdk
 #   Java
+# maven
+#   Java projects
 # ca-certificates
 #   SSL client
 # tzdata
@@ -40,6 +42,7 @@ WORKDIR /root
 RUN apt-get -qqy update && \
     apt-get -qqy --no-install-recommends install \
     openjdk-8-jdk \
+    maven \
     ca-certificates \
     tzdata \
     zip \
@@ -113,7 +116,7 @@ RUN wget -nv -O RemoteAppiumManager.jar "https://github.com/AppiumTestDistributi
 #==================================
 # Fix Issue with timezone mismatch
 #==================================
-ENV TZ="US/Pacific"
+ENV TZ="Pacific/Auckland"
 RUN echo "${TZ}" > /etc/timezone
 
 #===============
